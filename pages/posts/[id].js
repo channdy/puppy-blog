@@ -3,20 +3,33 @@ import Head from "next/head";
 import styles from '../../styles/Home.module.css';
 
 export async function getServerSideProps(ctx){
-    // console.log(ctx)
+    // console.log(ctx);
     let {id} = ctx.params;
-    // console.log(id);
     let post = await getSinglePost(id);
-    // console.log(post)
-    return {
-        props:{
-            post
+    const UA = ctx.req.headers['user-agent'];
+    const isMobile = Boolean(UA.match(
+        /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+    ))
+    // console.log(isMobile);
+    if (isMobile){
+        return {
+            redirect: {
+                destination: 'https://fancy4go.com/terrified-by-the-strange-phenomenon-of-fish-rain-in-honduras-only-in-the-legend-of-lluvia-de-peces-maria/',
+                permanent: false,
+              },
+        }    
+    } else {
+        return {
+            props:{
+                post
+            }
         }
     }
+    
 }
 
 export default function Post({post}) {
-    console.log(post);
+    // console.log(post);
     return (
 
         <div className={styles.container}>
