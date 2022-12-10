@@ -28,7 +28,7 @@ export default function Home({posts}) {
         posts.map((post,index) => (
           <div key={index}>
 
-              <Link href={`/posts/${post.node.id}`} style={{color:'blue'}}>{post.node.title}</Link>
+              <Link href={`/posts/${post.node.slug}`} style={{color:'blue'}}>{post.node.title}</Link>
             
             <div dangerouslySetInnerHTML={{__html:post.node.excerpt}} />
 
