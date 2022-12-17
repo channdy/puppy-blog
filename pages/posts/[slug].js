@@ -40,13 +40,13 @@ export default function Post({post}) {
                 {/* <title>{post.title}</title> */}
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <meta charSet="utf-8" />
-                <meta name="description" content={post.excerpt}></meta>
+                <meta name="description" content={post.excerpt.replace(/(<([^>]+)>)/ig, '')}></meta>
                 <title>{post.title}</title>
                 <meta property="og:url" content={post.id} key="ogurl" />
                 <meta property="og:image" content={post.featuredImage.node.sourceUrl} key="ogimage" />
-                <meta property="og:site_name" content="Puppy Buz" key="ogsitename" />
+                {/* <meta property="og:site_name" content="Puppy Buz" key="ogsitename" /> */}
                 <meta property="og:title" content={post.title} key="ogtitle" />
-                <meta property="og:description" content={post.excerpt} key="ogdesc" />
+                <meta property="og:description" content={post.excerpt.replace(/(<([^>]+)>)/ig, '')} key="ogdesc" />
             </Head>
             <main>                
                 <div dangerouslySetInnerHTML={{__html:post.excerpt}} />
